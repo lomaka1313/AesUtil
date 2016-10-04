@@ -1,12 +1,12 @@
 {
   "name": "aesutil",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "engines": {
-    "node":"^4.4.0"
+    "node": "^4.4.0"
   },
-  "author":"Lomachuk Igor",
+  "author": "Lomachuk Igor",
   "repository": {
-    "github":"https://github.com/lomaka1313/AesUtil"
+    "github": "https://github.com/lomaka1313/AesUtil"
   }
 }
