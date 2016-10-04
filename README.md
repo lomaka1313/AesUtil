@@ -1,3 +1,3 @@
 # AesUtil
 
-npm i --save aesUtil
+npm i --save aesutil
