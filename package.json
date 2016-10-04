@@ -7,6 +7,8 @@
   },
   "author": "Lomachuk Igor",
   "repository": {
-    "github": "https://github.com/lomaka1313/AesUtil"
-  }
+    "type":"github",
+    "url": "https://github.com/lomaka1313/AesUtil"
+  },
+  "main": "aes.js"
 }
