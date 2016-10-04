@@ -1,13 +1,13 @@
 {
   "name": "aesutil",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "engines": {
     "node": "^4.4.0"
   },
   "author": "Lomachuk Igor",
   "repository": {
-    "type":"github",
+    "type": "github",
     "url": "https://github.com/lomaka1313/AesUtil"
   },
   "main": "aes.js"
