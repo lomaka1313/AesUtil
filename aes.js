@@ -5,10 +5,6 @@
  * AES Encryption/Decryption with AES-256-GCM using random Initialization Vector + Salt
  * @type {exports}
  */
-
-// load the build-in crypto functions
-var crypto = require('crypto');
-
 // encrypt/decrypt functions
 module.exports = {
 
@@ -18,7 +14,7 @@ module.exports = {
      * @param Buffer masterkey
      * @returns String encrypted text, base64 encoded
      */
-    encrypt: function (text, masterkey){
+    encrypt: function (text, masterkey) {
         try {
             // random initialization vector
             var iv = crypto.randomBytes(12);
@@ -42,7 +38,7 @@ module.exports = {
             // generate output
             return Buffer.concat([salt, iv, tag, encrypted]).toString('base64');
 
-        }catch(e){
+        } catch (e) {
         }
 
         // error
@@ -55,7 +51,7 @@ module.exports = {
      * @param Buffer masterkey
      * @returns String decrypted (original) text
      */
-    decrypt: function (data, masterkey){
+    decrypt: function (data, masterkey) {
         try {
             // base64 decoding
             var bData = new Buffer(data, 'base64');
@@ -67,7 +63,7 @@ module.exports = {
             var text = bData.slice(92);
 
             // derive key using; 32 byte key length
-            var key = crypto.pbkdf2Sync(masterkey, salt , 2145, 32, 'sha512');
+            var key = crypto.pbkdf2Sync(masterkey, salt, 2145, 32, 'sha512');
 
             // AES 256 GCM Mode
             var decipher = crypto.createDecipheriv('aes-256-gcm', key, iv);
@@ -78,24 +74,34 @@ module.exports = {
 
             return decrypted;
 
-        }catch(e){
-            
+        } catch (e) {
+
         }
 
         // error
         return null;
     },
 
-    concatObjects: function () {
-        var ret = {};
-        var len = arguments.length;
-        for (let i=0; i<len; i++) {
-            for (let p in arguments[i]) {
-                if (arguments[i].hasOwnProperty(p)) {
-                    ret[p] = arguments[i][p];
+    MergeRecursive: function (obj1, obj2) {
+
+        for (var p in obj2) {
+            try {
+                // Property in destination object set; update its value.
+                if (obj2[p].constructor == Object) {
+                    obj1[p] = MergeRecursive(obj1[p], obj2[p]);
+
+                } else {
+                    obj1[p] = obj2[p];
+
                 }
+
+            } catch (e) {
+                // Property in destination object not set; create it and set its value.
+                obj1[p] = obj2[p];
+
             }
         }
-        return ret;
+
+        return obj1;
     }
 };
