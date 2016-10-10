@@ -28,6 +28,7 @@ var MergeRecursive = function (obj1, obj2) {
 
     return obj1;
 }
+var crypto = require('crypto');
 
 module.exports = {
 
