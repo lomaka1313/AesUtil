@@ -63,10 +63,10 @@ module.exports = {
             return Buffer.concat([salt, iv, tag, encrypted]).toString('base64');
 
         } catch (e) {
+            return e;
         }
 
         // error
-        return null;
     },
 
     /**
@@ -99,12 +99,15 @@ module.exports = {
             return decrypted;
 
         } catch (e) {
-
+            return e;
         }
 
         // error
-        return null;
     },
 
-    MergeRecursive: MergeRecursive
+    MergeRecursive: MergeRecursive,
+
+    getPanMask: function (string) {
+        return `${string.substr(0, 6)}******${string.substr(12, 4)}`
+    }
 };
